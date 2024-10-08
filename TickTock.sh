@@ -117,7 +117,10 @@ if [ "$CurrentTimeSource" == "$TargetTimeSource" ]
 	else
 		/bin/echo "TimeSource is incorrect, setting it to $TargetTimeSource"
 		systemsetup -setnetworktimeserver $TargetTimeSource
-		/bin/echo # Outputting a Blank Line for Reporting Purposes
+		SectionEnd
+		/bin/echo 'Re-Checking Current Settings'
+		Check
+		SectionEnd
 fi
 #
 if [ "$CurrentTimeSyncStatus" == "On" ]
@@ -126,10 +129,10 @@ if [ "$CurrentTimeSyncStatus" == "On" ]
 	else
 		/bin/echo "TimeSync is not On, Enabling it"
 		systemsetup -setusingnetworktime On
+		SectionEnd
+		/bin/echo 'Re-Checking Current Settings'
+		Check
+		SectionEnd
 fi
 #
-SectionEnd
-/bin/echo 'Re-Checking Current Settings'
-Check
-SectionEnd
 ScriptEnd
